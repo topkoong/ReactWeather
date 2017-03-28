@@ -1,6 +1,25 @@
 // __dirname = gives a path to the current folder
+var  webpack = require('webpack');
+
+
 module.exports = {
-  entry: './app/app.jsx',// this tells the webpack where it should start processing your code.
+  entry: [
+    'script!jquery/dist/jquery.min.js',
+    'script!foundation-sites/dist/foundation.min.js',
+    './app/app.jsx'
+  ],// this tells the webpack where it should start processing your code.
+  externals: {
+    jquery: 'jQuery' // let foundation properly attached its methods onto Jquery obj
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      // objs are key-value pairs
+      // key is the variable name to watch for
+      // the value is the module to replace it with
+      '$': 'jquery',
+      'jQuery': 'jquery'
+    })
+  ],
   output: {
     path: __dirname,
     filename: './public/bundle.js'
