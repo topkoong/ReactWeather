@@ -4,6 +4,7 @@ var express = require('express'); // Now we have aceess the express entire API
 var app = express(); // call express library as a function
 const PORT = process.env.PORT || 3000; // process.env.PORT is for heroku and 3000 is the port for local host
 
+// redirect https traffic to http
 app.use(function (req, res, next) { // express middleware
   if (req.headers['x-forwarded-proto'] === 'http') {
     next();
