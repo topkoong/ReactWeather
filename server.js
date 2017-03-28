@@ -6,10 +6,10 @@ const PORT = process.env.PORT || 3000; // process.env.PORT is for heroku and 300
 
 // redirect https traffic to http
 app.use(function (req, res, next) { // express middleware
-  if (req.headers['x-forwarded-proto'] === 'http') {
-    next();
-  } else {
+  if (req.headers['x-forwarded-proto'] === 'https') {
     res.redirect('http://' + req.hostname + req.url);
+  } else {
+    next();
   }
 });
 
