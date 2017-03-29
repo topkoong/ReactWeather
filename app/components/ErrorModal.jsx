@@ -12,6 +12,7 @@ var ErrorModal = React.createClass({
   },
   // When the new message comes down, it's gonna get put into the dom and then inside of the componentDidMount.
   // We open up the modal and customize message and title, and let it show to the user
+  // componentDidMount gets called immediately after the DOM has been updated
   componentDidMount: function () {
     var modal = new Foundation.Reveal($('#error-modal')); // new instance of our modal
     modal.open();

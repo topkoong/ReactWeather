@@ -11,6 +11,12 @@ var Examples = require('Examples');
 require('style!css!foundation-sites/dist/foundation.min.css'); // css!, meaning we use css loader that we installed
 // we still need to inject css to html so the style actually shows up by adding style loader first.
 $(document).foundation();
+
+// App css
+require('style!css!applicationStyles');
+
+
+
 // var obj = {
 //   name: 'Top'
 // };
