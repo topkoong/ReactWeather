@@ -13,7 +13,7 @@ require('style!css!foundation-sites/dist/foundation.min.css'); // css!, meaning 
 $(document).foundation();
 
 // App css
-require('style!css!applicationStyles');
+require('style!css!sass!applicationStyles');
 
 
 
