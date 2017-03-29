@@ -14,8 +14,10 @@ var Weather = React.createClass({
     var that = this; // access the this keyword
 
     this.setState({
-      isLoading: true,//set isLoading to true when things get started (when someone starts to search)
-      errorMessage: undefined// clear error message in the beginning
+      isLoading: true, //set isLoading to true when things get started (when someone starts to search)
+      errorMessage: undefined, // clear error message in the beginning
+      location: undefined, // if we didn't do this. the data will be lingering around and might sit around for quite some time and could cause unexpected results.
+      temp: undefined
     });
 
     openWeatherMap.getTemp(location).then(function (temp) {
@@ -30,6 +32,25 @@ var Weather = React.createClass({
         errorMessage: e.message // javascript error obj, and e.message is where we can find the message to display
       });
     });
+  },
+  componentDidMount: function () {
+    var location = this.props.location.query.location; // we have the location in the url so that's the propery we wanna pull off of the query obj.
+    // search trigger
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      // location query string will be removed after the weather has been successfully searched for.
+      window.location.hash = '#/';
+    }
+  },
+  // React router's gonna automatically update the props of weather.jsx when the URL changed.
+  componentWillReceiveProps: function (newProps) {
+    var location = newProps.location.query.location; // we have the location in the url so that's the propery we wanna pull off of the query obj.
+    // search trigger
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      // location query string will be removed after the weather has been successfully searched for.
+      window.location.hash = '#/';
+    }
   },
   render: function () {
     //Use es6 destructuring in order to pull both variables off of the state
