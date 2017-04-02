@@ -13,7 +13,16 @@ module.exports = {
           throw new Error(res.data.message);
       } else {
         // return the temp (success case)
-        return res.data.main.temp;
+        var temp = res.data.main.temp;
+        var pressure = res.data.main.pressure;
+        var weather = [temp, pressure];
+        var humidity = res.data.main.humidity;
+        var wind_speed = res.data.wind.speed
+        var geo_corrds_lon = res.data.coord.lon;
+        var geo_corrds_lat = res.data.coord.lat;
+        var weather = [temp, pressure, humidity, wind_speed, geo_corrds_lon, geo_corrds_lat];
+        // return res.data.main.temp;
+        return weather;
       }
     }, function (res) {
       // error case
